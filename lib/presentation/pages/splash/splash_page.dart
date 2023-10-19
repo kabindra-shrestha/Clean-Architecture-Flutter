@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sample_clean_architecture/core/extensions/extensions.dart';
 
-import '../../../core/localization/localization.dart';
+import '../../../core/constants/asset_image.dart';
 import '../../../core/router/router_path.dart';
 import '../../../injectable.dart';
 import '../../cubits/splash/splash_cubits.dart';
@@ -20,8 +19,11 @@ class SplashPage extends StatelessWidget {
             authenticate: () => context.go(RouterPath.settings),
             unAuthenticatedState: () => context.go(RouterPath.settings));
       },
-      builder: (_, state) => Scaffold(
+      builder: (_, state) => const Scaffold(
           body: Center(
-              child: Text(Strings.of(context)!.appName,
-                  style: context.headerLine6Context))));
+              child: Image(
+                  image: AssetImage(AssetImageConstant.applicationLogoImage))
+              /*Text(Strings.of(context)!.appName,
+                  style: context.headerLine6Context)*/
+              )));
 }
