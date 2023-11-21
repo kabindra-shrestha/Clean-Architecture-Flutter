@@ -78,8 +78,8 @@ class TextStyleConstant {
       ColorConstant.subTitle1DarkThemeColor);
 
   static final _titleMediumDarkTextStyle =
-  FontConstant.titleMediumTextStyleFont(
-      ColorConstant.appBarTextDarkThemeColor);
+      FontConstant.titleMediumTextStyleFont(
+          ColorConstant.appBarTextDarkThemeColor);
 
   static final _bodyText2DarkTextStyle = FontConstant.bodyText2TextStyleFont(
       ColorConstant.bodyText2DarkThemeColor);

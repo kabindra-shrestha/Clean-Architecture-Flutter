@@ -20,6 +20,14 @@ final goRouter = GoRouter(
             return const SplashPage();
           }),
 
+      ///HOME
+      GoRoute(
+          name: 'home',
+          path: RouterPath.home,
+          builder: (BuildContext context, GoRouterState state) {
+            return const HomePage();
+          }),
+
       ///SETTINGS
       GoRoute(
           name: 'settings',

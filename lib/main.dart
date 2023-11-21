@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sample_clean_architecture/presentation/cubits/remote_articles/remote_articles_cubit.dart';
 
 import 'core/localization/localization.dart';
 import 'core/router/router.dart';
@@ -21,6 +22,7 @@ Future<void> main() async {
 
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (_) => getIt<ThemeCubit>()),
+    BlocProvider(create: (_) => getIt<RemoteArticlesCubit>()),
   ], child: const MyApp()));
 }
 

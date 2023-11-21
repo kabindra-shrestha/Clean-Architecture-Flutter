@@ -10,7 +10,7 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(const SplashState.loading());
 
   void isAuthenticatedUserCheck() async {
-    const bool authenticated = false;
+    const bool authenticated = true;
 
     Future.delayed(const Duration(seconds: 1), () {
       authenticated!

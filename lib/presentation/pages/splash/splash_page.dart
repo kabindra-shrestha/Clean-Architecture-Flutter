@@ -16,7 +16,7 @@ class SplashPage extends StatelessWidget {
       listener: (_, state) {
         ///when MUST BE ALL CUBIT STATE DEFINE AND whenOrNull NEED TO CUBIT STATE DEFINE
         state.whenOrNull(
-            authenticate: () => context.go(RouterPath.settings),
+            authenticate: () => context.go(RouterPath.home),
             unAuthenticatedState: () => context.go(RouterPath.settings));
       },
       builder: (_, state) => const Scaffold(
