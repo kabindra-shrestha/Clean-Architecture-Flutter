@@ -1,28 +1,15 @@
-part of 'remote_articles_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sample_clean_architecture/domain/models/article.dart';
 
-abstract class RemoteArticlesState extends Equatable {
-  final List<Article> articles;
-  final bool noMoreData;
-  final DioError? error;
+part 'remote_articles_state.freezed.dart';
 
-  const RemoteArticlesState({
-    this.articles = const [],
-    this.noMoreData = true,
-    this.error,
-  });
+@freezed
+class RemoteArticlesState with _$RemoteArticlesState {
+  const factory RemoteArticlesState.initial() = _Initial;
 
-  @override
-  List<Object?> get props => [articles, noMoreData, error];
-}
+  const factory RemoteArticlesState.loading() = _Loading;
 
-class RemoteArticlesLoading extends RemoteArticlesState {
-  const RemoteArticlesLoading();
-}
+  const factory RemoteArticlesState.success(List<Article> articles) = _Success;
 
-class RemoteArticlesSuccess extends RemoteArticlesState {
-  const RemoteArticlesSuccess({super.articles, super.noMoreData});
-}
-
-class RemoteArticlesFailed extends RemoteArticlesState {
-  const RemoteArticlesFailed({super.error});
+  const factory RemoteArticlesState.error(String error) = _Error;
 }

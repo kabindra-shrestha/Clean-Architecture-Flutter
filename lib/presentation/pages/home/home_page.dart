@@ -7,6 +7,7 @@ import 'package:sample_clean_architecture/core/extensions/context_extension.dart
 import '../../../domain/models/article.dart';
 import '../../../injectable.dart';
 import '../../cubits/remote_articles/remote_articles_cubit.dart';
+import '../../cubits/remote_articles/remote_articles_state.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,18 +18,13 @@ class HomePage extends StatelessWidget {
           bloc: getIt<RemoteArticlesCubit>()..getBreakingNewsArticles(),
           listener: (_, state) {},
           builder: (_, state) {
-            print("state.runtimeType: ${state.runtimeType}");
-            switch (state.runtimeType) {
-              case RemoteArticlesLoading _:
-                return const CupertinoActivityIndicator(
-                    color: Colors.blueAccent);
-              case RemoteArticlesFailed _:
-                return const Center(child: Icon(Ionicons.refresh));
-              case RemoteArticlesSuccess _:
-                return _buildArticles(state.articles);
-              default:
-                return _buildArticles(state.articles);
-            }
+            return state.when(
+                initial: () => const SizedBox.shrink(),
+                loading: () =>
+                    const CupertinoActivityIndicator(color: Colors.blueAccent),
+                success: (List<Article> articles) => _buildArticles(articles),
+                error: (String error) =>
+                    const Center(child: Icon(Ionicons.refresh)));
           });
 
   Widget _buildArticles(
