@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
@@ -8,6 +7,7 @@ import '../../../domain/models/article.dart';
 import '../../../injectable.dart';
 import '../../cubits/remote_articles/remote_articles_cubit.dart';
 import '../../cubits/remote_articles/remote_articles_state.dart';
+import '../../widgets/widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,8 +20,7 @@ class HomePage extends StatelessWidget {
           builder: (_, state) {
             return state.when(
                 initial: () => const SizedBox.shrink(),
-                loading: () =>
-                    const CupertinoActivityIndicator(color: Colors.blueAccent),
+                loading: () => const PlatformLoadingIndicatorWidget(),
                 success: (List<Article> articles) => _buildArticles(articles),
                 error: (String error) =>
                     const Center(child: Icon(Ionicons.refresh)));
