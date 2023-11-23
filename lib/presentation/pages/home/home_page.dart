@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:sample_clean_architecture/core/extensions/context_extension.dart';
 
 import '../../../domain/models/article.dart';
@@ -22,8 +21,20 @@ class HomePage extends StatelessWidget {
                 initial: () => const SizedBox.shrink(),
                 loading: () => const PlatformLoadingIndicatorWidget(),
                 success: (List<Article> articles) => _buildArticles(articles),
-                error: (String error) =>
-                    const Center(child: Icon(Ionicons.refresh)));
+                error: (String error) => Container(
+                      alignment: Alignment.center,
+                      color: Colors.lightBlue[100 * (10 % 9)],
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 12),
+                      child: Text(
+                        error,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: context.subTitle1Context,
+                      ),
+                    ));
+            // const Center(child: Icon(Ionicons.refresh)));
           });
 
   Widget _buildArticles(
