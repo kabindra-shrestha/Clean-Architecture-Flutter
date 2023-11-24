@@ -1,20 +1,15 @@
-part of 'local_articles_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:sample_clean_architecture/domain/models/article.dart';
 
-abstract class LocalArticlesState extends Equatable {
-  final List<Article> articles;
+part 'local_articles_state.freezed.dart';
 
-  const LocalArticlesState({
-    this.articles = const [],
-  });
+@freezed
+class LocalArticlesState with _$LocalArticlesState {
+  const factory LocalArticlesState.initial() = _Initial;
 
-  @override
-  List<Object> get props => [articles];
-}
+  const factory LocalArticlesState.loading() = _Loading;
 
-class LocalArticlesLoading extends LocalArticlesState {
-  const LocalArticlesLoading();
-}
+  const factory LocalArticlesState.success(List<Article> articles) = _Success;
 
-class LocalArticlesSuccess extends LocalArticlesState {
-  const LocalArticlesSuccess({super.articles});
+  const factory LocalArticlesState.error(String error) = _Error;
 }
