@@ -18,7 +18,7 @@ class DatabaseRepositoryImpl implements DatabaseRepository {
   }
 
   @override
-  Future<void> saveArticle(Article article) async {
-    return _appDatabase.articleDao.insertArticle(article);
+  Future<void> saveArticles(List<Article> articles) async {
+    return _appDatabase.articleDao.insertArticles(articles);
   }
 }

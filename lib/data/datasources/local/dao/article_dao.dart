@@ -11,6 +11,9 @@ abstract class ArticleDao {
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertArticle(Article article);
 
+  @Insert(onConflict: OnConflictStrategy.replace)
+  Future<void> insertArticles(List<Article> articles);
+
   @delete
   Future<void> deleteArticle(Article article);
 }

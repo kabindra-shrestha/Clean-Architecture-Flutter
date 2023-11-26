@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       BlocConsumer<RemoteArticlesCubit, RemoteArticlesState>(
-          bloc: getIt<RemoteArticlesCubit>()..getBreakingNewsArticles(),
+          bloc: getIt<RemoteArticlesCubit>()..getBreakingNewsArticles(context),
           listener: (_, state) {},
           builder: (_, state) {
             return state.when(

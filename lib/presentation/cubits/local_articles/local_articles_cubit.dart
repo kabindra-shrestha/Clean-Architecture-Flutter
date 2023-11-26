@@ -24,15 +24,15 @@ class LocalArticlesCubit extends Cubit<LocalArticlesState> {
     emit(const LocalArticlesState.loading());
 
     await _databaseRepository.removeArticle(article);
-    emit(await _getAllSavedArticles());
+    // emit(await _getAllSavedArticles());
   }
 
-  Future<void> saveArticle({required Article article}) async {
+  Future<void> saveArticles({required List<Article> articles}) async {
     emit(const LocalArticlesState.initial());
     emit(const LocalArticlesState.loading());
 
-    await _databaseRepository.saveArticle(article);
-    emit(await _getAllSavedArticles());
+    await _databaseRepository.saveArticles(articles);
+    // emit(await _getAllSavedArticles());
   }
 
   Future<LocalArticlesState> _getAllSavedArticles() async {
