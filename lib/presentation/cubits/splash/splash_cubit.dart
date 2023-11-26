@@ -9,10 +9,10 @@ part 'splash_state.dart';
 class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(const SplashState.loading());
 
-  void isAuthenticatedUserCheck() async {
+  Future<void> isAuthenticatedUserCheck() async {
     const bool authenticated = true;
 
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(milliseconds: 200), () {
       authenticated!
           ? emit(const SplashState.authenticate())
           : emit(const SplashState.unAuthenticatedState());
