@@ -1,9 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sample_clean_architecture/injectable.dart';
 import 'package:sample_clean_architecture/presentation/cubits/local_articles/local_articles_cubit.dart';
-import 'package:sample_clean_architecture/presentation/cubits/local_articles/local_articles_state.dart';
 import 'package:sample_clean_architecture/presentation/cubits/remote_articles/remote_articles_state.dart';
 
 import '../../../core/resources/data_state.dart';

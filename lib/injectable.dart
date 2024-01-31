@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import 'core/constants/constants.dart';
 import 'data/datasources/local/app_database.dart';
 import 'data/datasources/remote/news_api_service.dart';
 import 'data/repositories/api_repository_impl.dart';
@@ -18,8 +19,11 @@ final getIt = GetIt.instance;
 Future<GetIt> configure() async => getIt.init();*/
 
 @injectableInit
-Future configure() async {
+Future<void> configure() async {
   getIt.init();
+
+  final db = await $FloorAppDatabase.databaseBuilder(databaseName).build();
+  getIt.registerSingleton<AppDatabase>(db);
 
   final dio = Dio();
   dio.interceptors.add(PrettyDioLogger(
@@ -31,7 +35,6 @@ Future configure() async {
       compact: true,
       maxWidth: 90));
   dio.interceptors.add(AwesomeDioInterceptor());
-
   getIt.registerSingleton<Dio>(dio);
 
   getIt.registerSingleton<NewsApiService>(
