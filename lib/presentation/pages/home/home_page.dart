@@ -4,6 +4,8 @@ import 'package:sample_clean_architecture/core/extensions/context_extension.dart
 
 import '../../../domain/models/article.dart';
 import '../../../injectable.dart';
+import '../../cubits/local_articles/local_articles_cubit.dart';
+import '../../cubits/local_articles/local_articles_state.dart';
 import '../../cubits/remote_articles/remote_articles_cubit.dart';
 import '../../cubits/remote_articles/remote_articles_state.dart';
 import '../../widgets/widget.dart';
@@ -12,8 +14,11 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      BlocConsumer<RemoteArticlesCubit, RemoteArticlesState>(
+  Widget build(BuildContext context) => getArticles(context, true);
+
+  getArticles(BuildContext context, bool fromRemote) {
+    if (fromRemote) {
+      return BlocConsumer<RemoteArticlesCubit, RemoteArticlesState>(
           bloc: getIt<RemoteArticlesCubit>()..getBreakingNewsArticles(context),
           listener: (_, state) {},
           builder: (_, state) {
@@ -36,6 +41,32 @@ class HomePage extends StatelessWidget {
                     ));
             // const Center(child: Icon(Ionicons.refresh)));
           });
+    } else {
+      return BlocConsumer<LocalArticlesCubit, LocalArticlesState>(
+          bloc: getIt<LocalArticlesCubit>()..getAllSavedArticles(),
+          listener: (_, state) {},
+          builder: (_, state) {
+            return state.when(
+                initial: () => const SizedBox.shrink(),
+                loading: () => const PlatformLoadingIndicatorWidget(),
+                success: (List<Article> articles) => _buildArticles(articles),
+                error: (String error) => Container(
+                      alignment: Alignment.center,
+                      color: Colors.lightBlue[100 * (10 % 9)],
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 12),
+                      child: Text(
+                        error,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: context.subTitle1Context,
+                      ),
+                    ));
+            // const Center(child: Icon(Ionicons.refresh)));
+          });
+    }
+  }
 
   Widget _buildArticles(
     List<Article> articles,
