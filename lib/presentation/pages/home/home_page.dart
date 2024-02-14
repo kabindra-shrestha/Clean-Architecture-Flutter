@@ -75,27 +75,28 @@ class HomePage extends StatelessWidget {
     BuildContext context,
     List<Article> articles,
   ) {
-    return CustomScrollView(
+    return Scaffold(
+        body: SafeArea(
+            child: CustomScrollView(
       slivers: <Widget>[
-        const SliverAppBar(
+        /*const SliverAppBar(
           floating: true,
           pinned: true,
           expandedHeight: 250.0,
-          flexibleSpace: SafeArea(
-            child: FlexibleSpaceBar(
+          flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 'Articles',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ),
+              titlePadding: EdgeInsets.only(
+                  left: 32.0, top: 8.0, right: 32.0, bottom: 8.0)),
           backgroundColor: Colors.blueAccent,
-        ),
+        ),*/
         SliverToBoxAdapter(
           child: CarouselSlider(
             options: CarouselOptions(
-                height: 180.0,
+                height: 175.0,
                 autoPlay: true,
                 aspectRatio: 2.0,
                 enlargeCenterPage: true),
@@ -158,7 +159,7 @@ class HomePage extends StatelessWidget {
                   alignment: Alignment.center,
                   color: Colors.teal[100 * (index % 9)],
                   child: Text(
-                    articles[index].title!,
+                    articles[index].author!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: context.subTitle1Context,
@@ -166,7 +167,7 @@ class HomePage extends StatelessWidget {
                 ),
               );
             },
-            childCount: articles.length,
+            childCount: articles.sublist(0, 9).length,
           ),
         ),
         SliverFixedExtentList(
@@ -181,7 +182,7 @@ class HomePage extends StatelessWidget {
                   alignment: Alignment.center,
                   color: Colors.lightBlue[100 * (index % 9)],
                   child: Text(
-                    articles[index].title!,
+                    articles[index].author!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: context.subTitle1Context,
@@ -189,10 +190,10 @@ class HomePage extends StatelessWidget {
                 ),
               );
             },
-            childCount: articles.length,
+            childCount: articles.sublist(0, 9).length,
           ),
         ),
       ],
-    );
+    )));
   }
 }

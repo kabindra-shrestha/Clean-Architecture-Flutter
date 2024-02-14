@@ -19,8 +19,6 @@ Future<void> main() async {
 
   configure();
 
-  // Bloc.observer = AppBlocObserver();
-
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (_) => getIt<ThemeCubit>()),
     BlocProvider(create: (_) => getIt<RemoteArticlesCubit>()),
