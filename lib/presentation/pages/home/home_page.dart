@@ -151,21 +151,45 @@ class HomePage extends StatelessWidget {
           ),
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () {
-                  print('Item $index clicked');
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  color: Colors.teal[100 * (index % 9)],
-                  child: Text(
-                    articles[index].author!,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: context.subTitle1Context,
-                  ),
-                ),
-              );
+              return Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: InkWell(
+                      onTap: () {
+                        print('Item $index clicked');
+                      },
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100.0)),
+                                elevation: 5,
+                                child: const Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Icon(
+                                    Icons.developer_board,
+                                    size: 50,
+                                    color: Colors.amber,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  articles[index].title!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: context.subTitle1Context,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )));
             },
             childCount: articles.sublist(0, 9).length,
           ),
