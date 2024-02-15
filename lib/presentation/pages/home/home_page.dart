@@ -161,17 +161,24 @@ class HomePage extends StatelessWidget {
                         child: Column(
                           children: [
                             Center(
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100.0)),
+                              child: /*ClipRRect(
+                                borderRadius: BorderRadius.circular(120),
+                                child: Image.network(
+                                  articles[index].urlToImage!,
+                                  fit: BoxFit.cover,
+                                  width: 100,
+                                  height: 100,
+                                ),
+                              ),*/
+                              Card(
+                                shape: const CircleBorder(),
+                                clipBehavior: Clip.antiAlias,
                                 elevation: 5,
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Icon(
-                                    Icons.developer_board,
-                                    size: 50,
-                                    color: Colors.amber,
-                                  ),
+                                child: Image.network(
+                                  articles[index].urlToImage!,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
