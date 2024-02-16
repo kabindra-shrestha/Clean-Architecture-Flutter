@@ -151,17 +151,15 @@ class HomePage extends StatelessWidget {
           ),
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: InkWell(
-                      onTap: () {
-                        print('Item $index clicked');
-                      },
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Center(
-                              child: /*ClipRRect(
+              return InkWell(
+                  onTap: () {
+                    print('Item $index clicked');
+                  },
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Center(
+                          child: /*ClipRRect(
                                 borderRadius: BorderRadius.circular(120),
                                 child: Image.network(
                                   articles[index].urlToImage!,
@@ -171,32 +169,29 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),*/
                               Card(
-                                shape: const CircleBorder(),
-                                clipBehavior: Clip.antiAlias,
-                                elevation: 5,
-                                child: Image.network(
-                                  articles[index].urlToImage!,
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                            shape: const CircleBorder(),
+                            clipBehavior: Clip.antiAlias,
+                            elevation: 5,
+                            child: Image.network(
+                              articles[index].urlToImage!,
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.cover,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Container(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(
-                                  articles[index].title!,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: context.subTitle1Context,
-                                ),
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      )));
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(
+                            articles[index].author!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.headerLine3Context,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ));
             },
             childCount: articles.sublist(0, 9).length,
           ),
