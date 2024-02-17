@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
-                        style: context.subTitle1Context,
+                        style: context.headerLine3Context,
                       ),
                     ));
             // const Center(child: Icon(Ionicons.refresh)));
@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
-                        style: context.subTitle1Context,
+                        style: context.headerLine3Context,
                       ),
                     ));
             // const Center(child: Icon(Ionicons.refresh)));
@@ -132,7 +132,7 @@ class HomePage extends StatelessWidget {
                                     '${item.title}',
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
-                                    style: context.subTitle1Context,
+                                    style: context.headerLine5Context,
                                   ),
                                 ),
                               ),
@@ -151,47 +151,40 @@ class HomePage extends StatelessWidget {
           ),
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return InkWell(
-                  onTap: () {
-                    print('Item $index clicked');
-                  },
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Center(
-                          child: /*ClipRRect(
-                                borderRadius: BorderRadius.circular(120),
-                                child: Image.network(
-                                  articles[index].urlToImage!,
-                                  fit: BoxFit.cover,
-                                  width: 100,
-                                  height: 100,
-                                ),
-                              ),*/
-                              Card(
-                            shape: const CircleBorder(),
-                            clipBehavior: Clip.antiAlias,
-                            elevation: 5,
-                            child: Image.network(
-                              articles[index].urlToImage!,
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                            ),
+              return Center(
+                child: Column(
+                  children: [
+                    Center(
+                      child: InkWell(
+                        onTap: () {
+                          print('Item $index clicked');
+                        },
+                        customBorder: const CircleBorder(),
+                        child: Card(
+                          shape: const CircleBorder(),
+                          clipBehavior: Clip.antiAlias,
+                          elevation: 5,
+                          child: Image.network(
+                            articles[index].urlToImage!,
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            articles[index].author!,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.headerLine3Context,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ));
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      child: Text(
+                        articles[index].author!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.headerLine3Context,
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
             childCount: articles.sublist(0, 9).length,
           ),
@@ -200,7 +193,7 @@ class HomePage extends StatelessWidget {
           itemExtent: 50.0,
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return GestureDetector(
+              return InkWell(
                 onTap: () {
                   print('Item $index clicked');
                 },
@@ -211,7 +204,7 @@ class HomePage extends StatelessWidget {
                     articles[index].author!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: context.subTitle1Context,
+                    style: context.headerLine3Context,
                   ),
                 ),
               );
