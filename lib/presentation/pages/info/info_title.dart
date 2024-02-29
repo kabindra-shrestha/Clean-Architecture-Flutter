@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_clean_architecture/core/extensions/context_extension.dart';
 import 'package:sample_clean_architecture/domain/models/article.dart';
 
 class InfoTitle extends StatelessWidget {
@@ -12,24 +13,11 @@ class InfoTitle extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          article.author!,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 12,
-          ),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
         Row(
           children: [
             Text(
               article.author!,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
+              style: context.headerLine5Context,
             ),
             const SizedBox(
               width: 8,
@@ -48,28 +36,13 @@ class InfoTitle extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 8,
+          height: 4,
         ),
-        const Row(
-          children: [
-            Text(
-              "62,354,659",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-              ),
-            ),
-            SizedBox(
-              width: 8,
-            ),
-            Text(
-              "Monthly listeners",
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 12,
-              ),
-            )
-          ],
+        Text(
+          article.title!,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: context.headerLine5Context,
         ),
       ],
     );

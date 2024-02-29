@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:sample_clean_architecture/domain/models/article.dart';
 
+import 'info_content.dart';
 import 'info_title.dart';
 
 const expandedHeight = 240.0;
@@ -40,34 +41,8 @@ class _InfoPageState extends State<InfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return /*Scaffold(
-      backgroundColor: Colors.black,
-      bottomNavigationBar: SizedBox(
-        height: max(0, (1 - _percentageOpen) * _maxSizeBottomNavigationBar),
-        child: SingleChildScrollView(
-          child: BottomNavigationBar(
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.white,
-              backgroundColor: Colors.grey[900],
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.explore_outlined),
-                  label: 'Explore',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.library_music_outlined),
-                  label: 'Library',
-                ),
-              ]),
-        ),
-      ),
-      body: ExpandableBottomSheet(
-        background: */
-        CustomScrollView(
+    return Scaffold(
+        body: CustomScrollView(
       controller: _controller,
       physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
@@ -75,8 +50,9 @@ class _InfoPageState extends State<InfoPage> {
           expandedHeight: expandedHeight,
           collapsedHeight: 90,
           stretch: true,
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.transparent,
+          snap: true,
+          floating: true,
+          pinned: true,
           flexibleSpace: ClipRRect(
             borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(24),
@@ -94,52 +70,10 @@ class _InfoPageState extends State<InfoPage> {
             ),
           ),
         ),
-        // Used to get the stretch effect to not be above the SliverAppBar
-        /*const SliverToBoxAdapter(),*/
-        /*SliverAppBar(
-              backgroundColor: Colors.black,
-              toolbarHeight: _offset + kToolbarHeight,
-              title: Column(
-                children: [
-                  SizedBox(height: _offset),
-                  const ChoiceTab(),
-                ],
-              ),
-              primary: false,
-              pinned: true,
-            ),*/
-        /*SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return SongTile(
-                    index: index,
-                  );
-                },
-                childCount: listArianaGrandeAlbums.length,
-              ),
-            ),*/
-        /*const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 120,
-              ),
-            ),*/
+        SliverToBoxAdapter(
+          child: InfoContent(article: widget.article),
+        ),
       ],
-      /*),
-        persistentContentHeight: 64,
-        expandableContent: Player(percentageOpen: _percentageOpen),
-        onOffsetChanged: (offset, minOffset, maxOffset) {
-          if (maxOffset == null || offset == null || minOffset == null) {
-            return;
-          }
-          final range = maxOffset - minOffset;
-          final currentOffset = offset - minOffset;
-          setState(() {
-            _percentageOpen = max(0, 1 - (currentOffset / range));
-          });
-        },
-        enableToggle: true,
-        isDraggable: true,
-      ),*/
-    );
+    ));
   }
 }
