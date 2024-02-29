@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sample_clean_architecture/domain/models/article.dart';
 
 import '../../presentation/pages/pages.dart';
 import 'router_path.dart';
@@ -26,6 +27,14 @@ final goRouter = GoRouter(
           path: RouterPath.home,
           builder: (BuildContext context, GoRouterState state) {
             return const HomePage();
+          }),
+
+      ///INFO
+      GoRoute(
+          name: 'info',
+          path: RouterPath.info,
+          builder: (BuildContext context, GoRouterState state) {
+            return InfoPage(article: state.extra as Article);
           }),
 
       ///SETTINGS

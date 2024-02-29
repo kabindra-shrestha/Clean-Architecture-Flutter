@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sample_clean_architecture/core/extensions/context_extension.dart';
+import 'package:sample_clean_architecture/core/router/router_path.dart';
 
 import '../../../domain/models/article.dart';
 import '../../../injectable.dart';
@@ -104,40 +106,44 @@ class HomePage extends StatelessWidget {
                 .sublist(0, 5)
                 .map((item) => Container(
                       margin: const EdgeInsets.all(5.0),
-                      child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5.0)),
-                          child: Stack(
-                            children: <Widget>[
-                              Image.network(item.urlToImage!,
-                                  fit: BoxFit.cover, width: 1000.0),
-                              Positioned(
-                                bottom: 0.0,
-                                left: 0.0,
-                                right: 0.0,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(200, 0, 0, 0),
-                                        Color.fromARGB(0, 0, 0, 0)
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
+                      child: InkWell(
+                          onTap: () {
+                            context.push(RouterPath.info, extra: item);
+                          },
+                          child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(5.0)),
+                              child: Stack(
+                                children: <Widget>[
+                                  Image.network(item.urlToImage!,
+                                      fit: BoxFit.cover, width: 1000.0),
+                                  Positioned(
+                                    bottom: 0.0,
+                                    left: 0.0,
+                                    right: 0.0,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Color.fromARGB(200, 0, 0, 0),
+                                            Color.fromARGB(0, 0, 0, 0)
+                                          ],
+                                          begin: Alignment.bottomCenter,
+                                          end: Alignment.topCenter,
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 20.0),
+                                      child: Text(
+                                        '${item.title}',
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: context.headerLine5Context,
+                                      ),
                                     ),
                                   ),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10.0, horizontal: 20.0),
-                                  child: Text(
-                                    '${item.title}',
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: context.headerLine5Context,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
+                                ],
+                              ))),
                     ))
                 .toList(),
           ),
@@ -157,7 +163,7 @@ class HomePage extends StatelessWidget {
                     Center(
                       child: InkWell(
                         onTap: () {
-                          print('Item $index clicked');
+                          context.push(RouterPath.info, extra: articles[index]);
                         },
                         customBorder: const CircleBorder(),
                         child: Card(
@@ -189,13 +195,13 @@ class HomePage extends StatelessWidget {
             childCount: articles.sublist(0, 9).length,
           ),
         ),
-        SliverFixedExtentList(
+        /*SliverFixedExtentList(
           itemExtent: 50.0,
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
               return InkWell(
                 onTap: () {
-                  print('Item $index clicked');
+                  context.push(RouterPath.info, extra: articles[index]);
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -211,7 +217,7 @@ class HomePage extends StatelessWidget {
             },
             childCount: articles.sublist(0, 9).length,
           ),
-        ),
+        ),*/
       ],
     )));
   }
