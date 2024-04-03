@@ -25,21 +25,24 @@ class InfoContent extends StatelessWidget {
         ),
         Text(
           article.content!,
-          style: context.headerLine6Context,
+          textAlign: TextAlign.justify,
+          style: context.mobileVerifyTextStyle,
         ),
         const SizedBox(
           height: 8,
         ),
         Text(
           article.description!,
-          style: context.headerLine6Context,
+          textAlign: TextAlign.justify,
+          style: context.mobileVerifyTextStyle,
         ),
         const SizedBox(
           height: 8,
         ),
         Text(
           article.toString(),
-          style: context.headerLine6Context,
+          textAlign: TextAlign.justify,
+          style: context.mobileVerifyTextStyle,
         ),
         const SizedBox(
           height: 8,

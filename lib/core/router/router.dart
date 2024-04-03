@@ -44,4 +44,13 @@ final goRouter = GoRouter(
           builder: (BuildContext context, GoRouterState state) {
             return const SettingsPage();
           }),
+
+      ///FEDERATION
+      GoRoute(
+          name: 'federation',
+          path: RouterPath.federation,
+          builder: (BuildContext context, GoRouterState state) {
+            return const FederationListPage();
+          }),
     ]);
+

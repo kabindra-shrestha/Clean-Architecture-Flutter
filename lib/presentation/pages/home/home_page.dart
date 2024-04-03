@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
                       margin: const EdgeInsets.all(5.0),
                       child: InkWell(
                           onTap: () {
-                            context.push(RouterPath.info, extra: item);
+                            context.push(RouterPath.federation, extra: item);
                           },
                           child: ClipRRect(
                               borderRadius:
@@ -195,7 +195,7 @@ class HomePage extends StatelessWidget {
             childCount: articles.sublist(0, 9).length,
           ),
         ),
-        /*SliverFixedExtentList(
+        SliverFixedExtentList(
           itemExtent: 50.0,
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
@@ -217,7 +217,7 @@ class HomePage extends StatelessWidget {
             },
             childCount: articles.sublist(0, 9).length,
           ),
-        ),*/
+        ),
       ],
     )));
   }
