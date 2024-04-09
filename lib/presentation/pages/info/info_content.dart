@@ -9,8 +9,13 @@ class InfoContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 4,
+          horizontal: 20,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
@@ -48,6 +53,6 @@ class InfoContent extends StatelessWidget {
           height: 8,
         ),
       ],
-    );
+        ));
   }
 }

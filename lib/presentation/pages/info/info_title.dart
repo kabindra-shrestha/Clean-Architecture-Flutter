@@ -15,10 +15,26 @@ class InfoTitle extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(
-              article.author!,
-              style: context.headerLine5Context,
-            ),
+            Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 0.0,
+                      left: 20.0,
+                      right: 0.0,
+                      top: 0.0,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          article.author!,
+                          style: context.headerLine5Context,
+                        )
+                      ],
+                    ))),
             const SizedBox(
               width: 8,
             ),
@@ -38,12 +54,19 @@ class InfoTitle extends StatelessWidget {
         const SizedBox(
           height: 4,
         ),
-        Text(
-          article.title!,
-          maxLines: 2,
+        Padding(
+            padding: const EdgeInsets.only(
+              bottom: 0.0,
+              left: 20.0,
+              right: 0.0,
+              top: 0.0,
+            ),
+            child: Text(
+              article.title!,
+              maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: context.headerLine5Context,
-        ),
+          style: context.headerLine3Context,
+            )),
       ],
     );
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sample_clean_architecture/core/extensions/context_extension.dart';
@@ -8,7 +7,6 @@ import '../../../injectable.dart';
 import '../../cubits/remote_articles/remote_articles_cubit.dart';
 import '../../cubits/remote_articles/remote_articles_state.dart';
 import '../../widgets/indicator_adaptive_widget.dart';
-import '../info/info_content.dart';
 import 'federation_single_item.dart';
 
 class FederationListPage extends StatelessWidget {
